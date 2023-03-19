@@ -1,0 +1,51 @@
+# terminal
+super + Return
+	tilix
+
+# reload sxhkd
+super + Escape
+	pkill -USR1 -x sxhkd
+
+# quit/restart bspwm
+super + alt + {q,r}
+	bspc {quit,wm -r}
+
+# close and kill
+super + {_,shift + }w
+	bspc node -{c,k}
+
+# toggle window state
+super + {t,shift + t,s,f}
+	bspc node -t {tiled,pseudo_tiled,floating,fullscreen}
+
+# focus next/previous workspace in current monitor
+super + bracket{left,right}
+	bspc desktop -f {prev,next}.local
+
+# cycle through windows next
+super + Tab
+	bspc node -f next.!hidden.window
+
+# cycle through windows previous
+super + shift + Tab
+	bspc node -f prev.!hidden.window
+
+# focus next/previous monitor
+super + alt + bracket{left,right}
+	bspc monitor --focus {prev,next}
+
+# focus or send to workspace
+super + {_,shift + }{1-9,0}
+	bspc {desktop -f,node -d} '^{1-9,10}'
+
+# expand window outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract window inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move floating window
+super + {Left,Down,Up,Right}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
